@@ -1,19 +1,18 @@
-\clearpage
 \subsection{Why A and B must remain ordered}
 In the ideal cubic perovskite setting, place A at the corners, B at the body center and the anions at the face centers \cite{aflow}. The eight corners contribute $8/8=1$ A atom per cell. The six faces contribute $6/2=3$ anions. B has six nearest anion neighbors in the illustrated octahedron, while the periodically repeated face centers give A twelve nearest anion neighbors. The contest family label specifies the composition of the three anions. For example, NO2 supplies one N and two O per formula unit. The files give no site-resolved O/N ordering for the blind candidate.
 
-\begin{figure}[ht]
-\centering\includegraphics[width=\linewidth]{figures/crystal_sites.pdf}
-\caption{Left, one repeat unit of the ideal cubic prototype. Right, the coordination shells centered separately on A and B, reconstructed by periodic repetition. Red spheres denote anion sites. The shell views use independent scales and atom radii are schematic.}\label{fig:cell}
+Figure~\ref{fig:cell} holds the ideal fractional coordinates fixed while exchanging the cations. Each panel's gap and violation come from its own public DFT record.
+
+\begin{figure}[htbp]
+\centering\includegraphics[width=.98\linewidth]{figures/crystal_sites.pdf}
+\caption{Ordered sites in the ideal cubic prototype and two independently computed oxide records. In the unit cell Sn occupies the A corners and Ti the B center. The projected sections at right show the cations and equatorial oxygen sites. Squares mark Sn, diamonds Ti and circles O in both panels. Geometry follows the cubic prototype \cite{aflow}.}\label{fig:cell}
 \end{figure}
 
-The coordination environments in Figure~\ref{fig:cell} explain what an order-invariant composition descriptor would discard. We matched each public record $(a,b,x)$ with $(b,a,x)$ when both were labeled, excluded $a=b$, and counted each reciprocal pair once. Among 5,971 matches, the median absolute difference is 5.5296, with quartiles 2.2672 and 12.6046. A predictor that gives both records the same output $h$ incurs
+We matched each public record $(a,b,x)$ with $(b,a,x)$ when both were labeled, excluded $a=b$, and counted each reciprocal pair once. Among 5,971 matches, the median absolute difference is 5.5296, with quartiles 2.2672 and 12.6046. A predictor that gives both records the same output $h$ incurs
 \[
  \tfrac12\{|V(a,b,x)-h|+|V(b,a,x)-h|\}\ \geq\
  \tfrac12 |V(a,b,x)-V(b,a,x)|.
 \]
 Averaging the right-hand side gives an unavoidable MAE of at least 4.6805 on these 11,942 matched rows for a site-invariant predictor. This bound concerns the matched sample and must be compared on that same sample. It motivates retaining separate A and B descriptors before fitting.
 
-The full-pool Q3 winner illustrates the scale of the effect. Public $\mathrm{SnTiO_3}$ has $g=2.50$ eV and $V=0.001419$; its reversed assignment $\mathrm{TiSnO_3}$ has $g=0$ and $V=18.422244$. For $\mathrm{SnTiO_3}$ the supplied cubic lattice parameter is 3.969143~\AA. The figure uses fractional coordinates. Lattice parameters and volumes are available only in labeled records and do not enter the score of a new composition.
-
-\input{exchange.tex}
+The Sn--Ti pair illustrates the size of this effect. Public $\mathrm{SnTiO_3}$ has $g=2.50$ eV and $V=0.001419$. Its reversed assignment $\mathrm{TiSnO_3}$ has $g=0$ and $V=18.422244$. For $\mathrm{SnTiO_3}$ the supplied cubic lattice parameter is 3.969143~\AA. Lattice parameters and volumes are available only in labeled records and do not enter the score of a new composition.

@@ -1,6 +1,8 @@
 % Compile with XeLaTeX and the supplied APMCM class on TEXINPUTS.
 \documentclass{apmcmthesis}
 \usepackage{url}
+\usepackage[section]{placeins}
+\usepackage{needspace}
 \usepackage[hidelinks,pdfauthor={},pdftitle={Screening Perovskites When All Exact Targets Are Hidden}]{hyperref}
 \tihao{D}
 \baominghao{}
@@ -9,7 +11,8 @@
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{.45em}
 \setlength{\headheight}{15pt}
-\setcounter{tocdepth}{1}
+\setcounter{tocdepth}{2}
+\titleformat{\section}{\centering\normalfont\Large\bfseries}{\thesection.}{.5em}{}
 \setlength{\emergencystretch}{1.2em}
 \captionsetup{font=small,labelfont=bf,justification=raggedright,singlelinecheck=false}
 \newcommand{\Vh}{\widehat V}
@@ -24,13 +27,13 @@
 {\Large\bfseries Screening Perovskites When All Exact Targets Are Hidden}\\[3pt]
 {\large A band-gap surrogate and an audited 8-bit QUBO search}
 \end{center}
-All 19 zero-violation compositions in the 18,928-candidate grid belong to the hidden set. The public records nevertheless contain a measurable signal for screening. Every labeled zero-gap material has coincident band edges. Under the contest loss this implies a violation of at least 10.8658. We use a composition-based classifier to estimate the probability of a positive gap and fit separate violation regressions for the two regimes.
+All 19 zero-violation compositions in the 18,928-candidate grid belong to the hidden set. We train on public records to predict violations for 3,703 hidden compositions and rank candidates for the next physical calculation. Every labeled zero-gap material has coincident band edges. Under the contest loss this implies a violation of at least 10.8658. We use a composition-based classifier to estimate the probability of a positive gap and fit separate violation regressions for the two regimes.
 
-On 3,969 validation compositions from unseen element pairs, the resulting model retrieves 13 of the 27 materials with $V<1$ in its first 50 choices, compared with six for direct regression. A second training seed gives 15 versus ten. The improvement has a limit at a budget of one. On the three-family validation pool, the first choice has observed $V=11.4923$ at the primary seed, although the attainable minimum is 0.0400.
+On 3,969 validation compositions from unseen element pairs, the resulting model retrieves 13 of the 27 materials with $V<1$ in its first 50 choices, compared with six for direct regression. A second seed gives 15 versus ten. In the three-family validation pool at seed 26, the top 50 contain five of eleven near-targets for the mixture and one for the 350-tree direct model (four with 1,050 trees). Both rank $\mathrm{InTiO_3}$ first. Its observed violation of 11.49225 exceeds the pool minimum of 0.04000 by 11.45225.
 
-After refitting on all public labels, the full-pool surrogate selects $\mathrm{LaTiO_2N}$ for fixed $\noo$ ($\Vh=6.924382$) and $\mathrm{SnTiO_3}$ for the three-family problem ($\Vh=3.268113$). The first material has a hidden label. The second has public training $V=0.001419$. Restricting the three-family search to unseen pairs selects $\mathrm{LaTiO_2N}$ again.
+After refitting on all public labels, the full-pool surrogate selects $\mathrm{LaTiO_2N}$ for fixed $\noo$ ($\Vh=6.924382$) and $\mathrm{SnTiO_3}$ for the three-family problem ($\Vh=3.268113$). The first material's physical violation is unknown. The second has public $V=0.001419$ and was seen during refitting. Both blind pools select $\mathrm{LaTiO_2N}$.
 
-Direct 8-bit conversion changes the best legal pair in all six whole-grid settings tested on the three-family score table. We partition the table into $4\times4$ blocks, encode bounded integer costs, solve each block with the Kaiwu SDK on a CPU, and resolve ties using the original predictions. All 338 block solves pass exhaustive feasibility and energy checks. Both final selections match exact enumeration. At this scale a direct array scan is cheaper. The larger uncertainty is the physical loss at a previously unseen composition.
+Direct 8-bit conversion changes the best legal pair in all six whole-grid settings tested on the three-family score table. We partition the table into $4\times4$ blocks, encode each as a quadratic unconstrained binary optimization (QUBO) problem, solve it with the Kaiwu SDK on a CPU, and break ties using the original scores. All 338 block solves pass exhaustive feasibility and energy checks. In both full candidate pools, the block solver recovers the minimum of the frozen prediction table. Direct scans of those same scores take only microseconds. The larger uncertainty is the physical loss at a previously unseen composition.
 \keywords{perovskite screening, grouped validation, band-gap mixture, QUBO, coefficient precision}
 \end{abstract}
 \clearpage
@@ -41,4 +44,3 @@ Direct 8-bit conversion changes the best legal pair in all six whole-grid settin
 \input{references.tex}
 \input{appendix.tex}
 \end{document}
-

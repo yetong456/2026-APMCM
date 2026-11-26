@@ -1,4 +1,3 @@
-\clearpage
 \subsection{How much score error can change the recommendation?}
 Checking the original score after decoding certifies the winner for a frozen table. Its robustness to changes in that table can be computed separately. Let $s_1<s_2$ denote the first two scores in one specified pool. If each score changes by at most $\epsilon$, the original winner remains strictly first whenever
 \begin{equation}
@@ -6,9 +5,9 @@ Checking the original score after decoding certifies the winner for a frozen tab
  \quad\Longleftrightarrow\quad \epsilon<(s_2-s_1)/2 .
  \label{eq:margin}
 \end{equation}
-The condition is sharp under independent bounded perturbations: opposite changes at the two leading entries can create a tie at equality. If changes are correlated by composition, this worst case may be unattainable. Equation~\eqref{eq:margin} is a deterministic stability radius and carries no calibrated probability of physical success.
+The condition is sharp under independent bounded perturbations. Opposite changes at the two leading entries can create a tie at equality. If changes are correlated by composition, this worst case may be unattainable. Table~\ref{tab:margins} applies Eq.~\eqref{eq:margin} to each frozen pool. The resulting radii bound changes in predicted scores.
 
-\begin{table}[ht]
+\begin{table}[htbp]
 \caption{Selection margins in the archived Q2/Q3 refit. The last column counts records, including the winner, with predicted score at most two units above the minimum.}\label{tab:margins}
 \centering\small\begin{tabular}{llrrr}
 \toprule Pool & Runner-up & $s_2-s_1$ & Half-margin & Within 2 units\\\midrule
@@ -21,5 +20,4 @@ Q3 blind (12) & $\mathrm{YTiO_2N}$ & 0.332282 & 0.166141 & 9\\\bottomrule
 
 The two blind pools share a winner and runner-up because both leading NO2 pairs are eligible in either pool. Allowing the other two families raises the number of candidates within two score units from two to nine. More compositions can therefore enter a follow-up list even while the first two recommendations are stable to the change in pool. Conversely, expanding the Q3 blind pool to the full grid admits two public oxide candidates at the top. Reporting only the best score would conceal this change in the prospective experimental decision.
 
-The full Q3 half-margin is 0.318384. Finite-precision error larger than this bound would require an order check; a large mean prediction error on validation gives no pointwise bound on any particular new material. The block algorithm addresses the first concern directly by comparing original scores for all integer ties. The material-selection risk remains governed by extrapolation to unseen pairs. For the next physical calculation, the score ledger identifies both the first candidate and its nearest competitor, while the grouped validation results quantify how often shortlists contain low-violation materials.
-
+The unrounded full-pool Q3 half-margin is $0.318383852\ldots$ (displayed as 0.318384). Equality can produce a tie. Mean validation error gives no pointwise bound on a new material. The block algorithm addresses the first concern directly by comparing original scores for all integer ties. The material-selection risk remains governed by extrapolation to unseen pairs. For the next physical calculation, the score ledger identifies both the first candidate and its nearest competitor, while the grouped validation results quantify how often shortlists contain low-violation materials.

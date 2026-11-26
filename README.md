@@ -13,7 +13,7 @@
 | 验证排序、近目标留出、精确消元、软件量化 | 已运行，日志与预测表见 results |
 | Kaiwu 实际优化调用 | 本地精确求解器完成 338 个九自旋实例，逐块核验全部合法与非法状态 |
 | 模型与计算成本 | 已冻结评分表并记录分项耗时，SPQC 真机尚无实测 |
-| 英文论文 | [阅读 PDF](problem_d/paper/D_review.pdf) · [LaTeX 源稿、预测与复现](problem_d/paper/README.md) · [支撑材料 ZIP](problem_d/paper/D_review_support.zip)。队号按要求留空 |
+| 英文论文 | [阅读 PDF](problem_d/paper/D_review.pdf) · [LaTeX 源稿、预测与复现](problem_d/paper/README.md) · [支撑材料 ZIP](problem_d/paper/D_review_support.zip)。审阅版暂空队号，正式提交前须填写真实队号 |
 
 探索结论以脚本、预测表和日志为依据。隐藏测试集物理标签未公开，候选分数是代理预测。
 
@@ -29,6 +29,7 @@
 | [环境与复现](docs/06_environment.md) | 安装运行、依赖版本和授权状态 |
 | [英文论文与提交要求](docs/07_paper_requirements.md) | 页序、匿名、命名、截止和交付 |
 | [外部笔记评审与修正](docs/08_external_notes_review.md) | 可读来源、我们方案的不足、物理预测与官方 8 位新实验 |
+| [论文修订与 24 项核验](docs/09_paper_revision.md) | 评审意见、英文逐句修改、逐图处置与交稿待办 |
 | [实验记录](problem_d/results/README.md) | 逐行预测、日志、指标及环境版本 |
 
 ## 目录

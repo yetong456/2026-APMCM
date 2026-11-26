@@ -1,6 +1,6 @@
 # Problem D manuscript and reproducible experiments
 
-[D_review.pdf](D_review.pdf) is the English manuscript. The team number is intentionally blank. The summary, contents, main text, references and full program listings are in the PDF. The two full candidate pools were solved with the local Kaiwu CPU exact optimizer. There was no SPQC device experiment.
+[D_review.pdf](D_review.pdf) is the English manuscript. The review copy leaves the team number for its registered authors to complete. The summary, contents, main text, references and full program listings are in the PDF. The two full candidate pools were solved with the local Kaiwu CPU exact optimizer. There was no SPQC device experiment.
 
 | File | Contents |
 |---|---|
@@ -12,17 +12,18 @@
 | [artifacts/blind_minima.csv](artifacts/blind_minima.csv) | Direct scans of blind subsets 11 and 12 |
 | [artifacts/block_runs.csv](artifacts/block_runs.csv) | All 338 nine-spin calls, block indices (alphabetical element order), ground-state tie counts, original scores and timings |
 | [artifacts/group_folds.csv](artifacts/group_folds.csv) | Five-fold grouped development results |
+| [artifacts/capacity_control.csv](artifacts/capacity_control.csv) | Matched-descriptor direct fits with 350, 700 and 1,050 trees versus the frozen mixture, two seeds and three pools |
 | [artifacts/costs.csv](artifacts/costs.csv) | Timings, calls, integer ranges and tie counts |
 
-The twelve manuscript figures include four perovskite-specific illustrations, available as vector PDFs and high-resolution PNGs. [Cubic cell and coordination shells](figures/crystal_sites.pdf) and [oxide site-exchange sections](figures/site_exchange.pdf) use ideal coordinates. [Band-edge levels](figures/band_edges.pdf) compare public oxide records and the seed-26 property model. The supplementary anion composition diagram uses composition fractions and the frozen La–Ti scores. The full-grid family heatmaps remain a supplementary figure. The paired resampling and seed overlap results are in [shortlist_sensitivity.csv](artifacts/shortlist_sensitivity.csv).
+The paper contains nine figures in the main text and two in the appendix. Each is a native vector PDF made from the underlying data or ideal cubic coordinates. The [Q3 budget comparison](figures/q3_budget.pdf) shows both 50-candidate hit counts and rank-one regret on the same 1,701 validation rows. The [integer tie example](figures/tied_block.pdf) links four minimum-cost cells to their original scores. Model colors, markers and element colors are shared across figures. The [three-family score maps](figures/family_landscapes.pdf) are a further figure in the supporting archive.
 
-The gate audit refits the seed-26 mixture on file 02 and checks all 3,969 scores against their archived values. The outputs in artifacts include gate_components.csv, gate_ablation.csv, edge_consistency.csv and score_margins.csv. Four orthographic scenes show a corner-sharing InTiO3 motif, an incident photon over ideal CaZrO3, the expanded layers of the decoded SnTiO3 cell, and [a three-stage O-to-N composition edit](figures/anion_exchange_scene.pdf). They are ideal geometric and energetic illustrations.
+The gate replay checks the 3,969 archived seed-26 predictions. The separate capacity control replays the direct and mixture baselines for seeds 26 and 42, then refits larger direct models on file 02. Its 700-tree budget matches nominal training-row passes and its 1,050-tree budget matches the mixture's component tree count. Fitting times are measured separately for each run. Pair-bootstrap and seed-overlap results appear in [shortlist_sensitivity.csv](artifacts/shortlist_sensitivity.csv).
 
 ## Reproduce the numbers
 
 From the repository root, use a Python 3.12 environment with the packages listed in `problem_d/requirements-lock.txt`. Keep all original D CSV files and the organizer's SHA-256 manifest and data notes in `problem_d/date/`. If starting from the support archive, supply this folder from the competition download. The official manifest also includes the original Chinese-named data notes.
 
-The commands below use PowerShell and assume that `python` invokes the selected environment. Timing columns depend on machine load. For the plots and manuscript alone, use the stored outputs in the repository or archive.
+The commands below use PowerShell and assume that `python` invokes the selected environment. Timing columns depend on machine load. With the repository or extracted support ZIP, the stored results are sufficient to compile the paper. Regenerating plots that read public properties or rerunning the experiments also requires the organizer’s original CSV files.
 
 ```powershell
 python problem_d/exploration/audit_data.py
@@ -36,11 +37,12 @@ python problem_d/exploration/audit_sdk_precision.py
 python problem_d/paper/screen.py scores
 python problem_d/paper/screen.py development
 python problem_d/paper/solve.py
+python problem_d/paper/gate_audit.py
+python problem_d/paper/capacity_audit.py
+python problem_d/paper/mechanisms.py
 python problem_d/paper/figures.py
 python problem_d/paper/material_figures.py
 python problem_d/paper/perovskite_plates.py
-python problem_d/paper/gate_audit.py
-python problem_d/paper/mechanisms.py
 python problem_d/paper/crystal_scenes.py
 python problem_d/paper/tables.py
 ```
@@ -49,7 +51,7 @@ The Q1 predictions use seed 26 and the 02-only model. The Q2/Q3 refit uses the s
 
 ## Compile the manuscript
 
-With TeX Live and the APMCM template dependencies installed, run from this directory in PowerShell. The official template class and configuration are included under `sources/latex/`. A local TeX Live installation may need the `cprotect`, `bigfoot` (suffix.sty) and `appendix` packages when compiling with XeLaTeX.
+With TeX Live and the APMCM template dependencies installed, run from this directory in PowerShell. The template class and configuration are included under `sources/latex/`. Install the template dependencies, including ctex, xeCJK, ulem, cprotect, bigfoot, appendix, placeins and needspace. The class uses Times New Roman when installed, then tries TeX Gyre Termes and Liberation Serif. Page breaks can vary with the chosen font.
 
 ```powershell
 $env:TEXINPUTS = '.;../../sources/latex;' + $env:TEXINPUTS + ';'

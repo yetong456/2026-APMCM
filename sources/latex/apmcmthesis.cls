@@ -80,7 +80,11 @@
 
 \ifxetex
 \RequirePackage{ctex}
-\setmainfont{Times New Roman}
+\IfFontExistsTF{Times New Roman}
+  {\setmainfont{Times New Roman}}
+  {\IfFontExistsTF{TeX Gyre Termes}
+    {\setmainfont{TeX Gyre Termes}}
+    {\setmainfont{Liberation Serif}}}
 \else
 \RequirePackage{CJK}
 \usepackage{newtxtext}

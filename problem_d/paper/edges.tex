@@ -1,14 +1,13 @@
-\clearpage
 \subsection{Reading a near miss and a false positive from their band edges}
-The band-edge thresholds and the gap window test different aspects of a prediction. Figure~\ref{fig:bands} uses the contest's edge convention, plotting larger reported edge values lower on the page. Each horizontal solid level is a CBM or VBM value; its height can be compared across all three columns. The dotted levels show the two contest cutoffs. For a successful candidate, the CBM should lie above its line in the drawing and the VBM below its own line.
+The band-edge thresholds and gap window test different properties. Figure~\ref{fig:bands} compares the contest's two reported edges with their cutoffs and places the modeled and public gaps for $\mathrm{CaZrO_3}$ on a separate axis.
 
-\begin{figure}[ht]
+\begin{figure}[htbp]
 \centering\includegraphics[width=\linewidth]{figures/band_edges.pdf}
-\caption{Band-edge levels in eV for the public Q3 winner and the Q3 failure of the seed-26 property model. Arrows span the two edge estimates. Below each column is the separately reported or predicted GLLB-SC gap field used in the objective. Energies follow the file's reference convention.}\label{fig:bands}
+\caption{Public DFT values and seed-26 property-model estimates. Left, the dotted lines mark the CBM (4.50 eV) and VBM (5.73 eV) cutoffs on the contest's inverted edge axis. Right, shading marks the 1.40--3.10 eV accepted gap interval.}\label{fig:bands}
 \end{figure}
 
 For $\mathrm{SnTiO_3}$, the CBM lies 0.018833 eV beyond its cutoff, a difference too small to resolve easily at the figure scale. For $\mathrm{CaZrO_3}$ the observed edges both pass, but the observed gap is 6.50 eV. It exceeds the upper limit by 3.40 eV and produces the entire observed violation of 46.24.
 
-The middle column explains how the four-property model can rank that material first. It predicts $g=2.1883$ eV, with both small band-edge violations and a passing formation energy, for a total predicted $V=0.2342$. Its independently fitted edges imply $5.5559-4.6680=0.8879$ eV, far from its own gap estimate. In the public DFT record the analogous difference is 6.53 eV, close to the tabulated 6.50 eV. The discrepancy between the model's two estimates of the gap provides a composition-level warning that could be checked before spending a single assay. The following sensitivity test evaluates this warning across all Q3 validation pairs.
+The modeled band edges help explain how the four-property model can rank that material first. It predicts $g=2.1883$ eV, with both small band-edge violations and a passing formation energy, for a total predicted $V=0.2342$. Its independently fitted edges imply $5.5559-4.6680=0.8879$ eV, far from its own gap estimate. In the public DFT record the analogous difference is 6.53 eV, close to the tabulated 6.50 eV. The discrepancy between the model's two estimates of the gap provides a composition-level warning that could be checked before spending a single assay. The following sensitivity test evaluates this warning across all Q3 validation pairs.
 
 \input{consistency.tex}
